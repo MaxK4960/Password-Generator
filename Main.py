@@ -1,7 +1,6 @@
 import random
 import tkinter as tk
 
-
 lowChars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
             "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 uppChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
@@ -10,15 +9,18 @@ specChars = ["!", "'", ",", ".", "£", "$", "€", "%", "^",
              "&", "*", "?", "/", ":", ";", "-", "+", "=", "~"]
 nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
-
+# Settings for the GUI
 window = tk.Tk()
 window.title("Password Generator")
 window.geometry("300x200")
+
+# Allows user to input a length
 length = tk.Label(text="Enter Password Length: ")
 length.grid(column=0, row=4)
 lengthEntry = tk.Entry()
 lengthEntry.grid(column=1, row=4)
 
+# Check boxes for the different options
 Lowercase = tk.IntVar()
 Uppercase = tk.IntVar()
 Special = tk.IntVar()
@@ -41,7 +43,7 @@ def getInput():
     length = lengthEntry.get()
     intLength = int(length)
 
-    if Lowercase.get:
+    if Lowercase.get:  # Uses the check box options and adds the arrays to final
         final.extend(lowChars)
     if Uppercase.get:
         final.extend(uppChars)
@@ -50,15 +52,16 @@ def getInput():
     if Numbers.get:
         final.extend(nums)
 
-    while (i < intLength):
+    while (i < intLength):  # Generates the password word from final[]
         password = password + random.choice(final)
         i += 1
     textArea = tk.Text(master=window, height=1,
                        width=intLength)
     textArea.grid(column=0, row=5)
-    textArea.insert(tk.END, password)
+    textArea.insert(tk.END, password)  # Where password is displayed
 
 
+# Button with takes the input from lengthEntry and runs it in getInput()
 button = tk.Button(window, text="Generate", command=getInput, bg="lightblue")
 button.grid(column=1, row=5)
 window.mainloop()
