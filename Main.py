@@ -35,21 +35,23 @@ C3.grid(column=0, row=2, sticky="w")
 C4 = tk.Checkbutton(text="Numbers", variable=Numbers)
 C4.grid(column=0, row=3, sticky="w")
 
+final = []
+
 
 def getInput():
     i = 0
-    final = []
+
     password = ""
     length = lengthEntry.get()
     intLength = int(length)
 
-    if Lowercase.get:  # Uses the check box options and adds the arrays to final
+    if (Lowercase.get() == True):  # Uses the check box options and adds the arrays to final
         final.extend(lowChars)
-    if Uppercase.get:
+    if (Uppercase.get() == True):
         final.extend(uppChars)
-    if Special.get:
+    if (Special.get() == True):
         final.extend(specChars)
-    if Numbers.get:
+    if (Numbers.get() == True):
         final.extend(nums)
 
     while (i < intLength):  # Generates the password word from final[]
